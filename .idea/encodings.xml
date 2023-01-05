@@ -2,9 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/mymail-coupon/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mymail-coupon/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mymail-member/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mymail-order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mymail-product/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mymail-ware/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/renren-fast/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/renren-generator/src/main/java" charset="UTF-8" />
   </component>
 </project>

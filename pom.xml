@@ -16,5 +16,8 @@
         <module>mymail-order</module>
         <module>mymail-product</module>
         <module>mymail-ware</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>mymail-commom</module>
     </modules>
 </project>

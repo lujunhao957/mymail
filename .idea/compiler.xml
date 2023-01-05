@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_ADDITIONAL_VM_OPTIONS" value="-Djps.track.ap.dependencies=false" />
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,16 +12,22 @@
         <module name="mymail-coupon" />
         <module name="mymail-order" />
         <module name="mymail-member" />
+        <module name="mymail-commom" />
+        <module name="renren-fast" />
         <module name="mymail-product" />
+        <module name="renren-generator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
-      <module name="mymail" target="17" />
-      <module name="mymail-coupon" target="17" />
-      <module name="mymail-member" target="17" />
-      <module name="mymail-order" target="17" />
-      <module name="mymail-product" target="17" />
-      <module name="mymail-ware" target="17" />
+      <module name="mymail" target="1.5" />
+      <module name="mymail-commom" target="1.8" />
+      <module name="mymail-coupon" target="1.8" />
+      <module name="mymail-member" target="1.8" />
+      <module name="mymail-order" target="1.8" />
+      <module name="mymail-product" target="1.8" />
+      <module name="mymail-ware" target="1.8" />
+      <module name="renren-fast" target="1.8" />
+      <module name="renren-generator" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -29,6 +37,8 @@
       <module name="mymail-order" options="-parameters" />
       <module name="mymail-product" options="-parameters" />
       <module name="mymail-ware" options="-parameters" />
+      <module name="renren-fast" options="-parameters" />
+      <module name="renren-generator" options="-parameters" />
     </option>
   </component>
 </project>
