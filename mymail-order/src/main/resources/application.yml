@@ -6,6 +6,13 @@ spring:
     password: root
     url: jdbc:mysql://192.168.220.129:3306/mymail_oms
     driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.220.129:8848
+  application:
+    name: mymail-order
+
 mybatis-plus:
   global-config:
     db-config:
