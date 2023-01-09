@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 15:46:23
+ * @date 2023-01-07 22:39:03
  */
 public interface MemberLoginLogService extends IService<MemberLoginLogEntity> {
 

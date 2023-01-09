@@ -4,8 +4,8 @@
     :close-on-click-modal="false"
     :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
-    <el-form-item label="member_id" prop="memberId">
-      <el-input v-model="dataForm.memberId" placeholder="member_id"></el-input>
+    <el-form-item label="member_id" prop="userId">
+      <el-input v-model="dataForm.userId" placeholder="member_id"></el-input>
     </el-form-item>
     <el-form-item label="订单号" prop="orderSn">
       <el-input v-model="dataForm.orderSn" placeholder="订单号"></el-input>
@@ -13,11 +13,11 @@
     <el-form-item label="使用的优惠券" prop="couponId">
       <el-input v-model="dataForm.couponId" placeholder="使用的优惠券"></el-input>
     </el-form-item>
-    <el-form-item label="create_time" prop="createTime">
-      <el-input v-model="dataForm.createTime" placeholder="create_time"></el-input>
+    <el-form-item label="创建时间" prop="createTime">
+      <el-input v-model="dataForm.createTime" placeholder="创建时间"></el-input>
     </el-form-item>
-    <el-form-item label="用户名" prop="memberUsername">
-      <el-input v-model="dataForm.memberUsername" placeholder="用户名"></el-input>
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="dataForm.username" placeholder="用户名"></el-input>
     </el-form-item>
     <el-form-item label="订单总额" prop="totalAmount">
       <el-input v-model="dataForm.totalAmount" placeholder="订单总额"></el-input>
@@ -97,11 +97,8 @@
     <el-form-item label="区" prop="receiverRegion">
       <el-input v-model="dataForm.receiverRegion" placeholder="区"></el-input>
     </el-form-item>
-    <el-form-item label="详细地址" prop="receiverDetailAddress">
-      <el-input v-model="dataForm.receiverDetailAddress" placeholder="详细地址"></el-input>
-    </el-form-item>
-    <el-form-item label="订单备注" prop="note">
-      <el-input v-model="dataForm.note" placeholder="订单备注"></el-input>
+    <el-form-item label="详细地址" prop="receiverAddress">
+      <el-input v-model="dataForm.receiverAddress" placeholder="详细地址"></el-input>
     </el-form-item>
     <el-form-item label="确认收货状态[0->未确认；1->已确认]" prop="confirmStatus">
       <el-input v-model="dataForm.confirmStatus" placeholder="确认收货状态[0->未确认；1->已确认]"></el-input>
@@ -127,6 +124,9 @@
     <el-form-item label="修改时间" prop="modifyTime">
       <el-input v-model="dataForm.modifyTime" placeholder="修改时间"></el-input>
     </el-form-item>
+    <el-form-item label="订单备注" prop="remark">
+      <el-input v-model="dataForm.remark" placeholder="订单备注"></el-input>
+    </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -142,11 +142,11 @@
         visible: false,
         dataForm: {
           id: 0,
-          memberId: '',
+          userId: '',
           orderSn: '',
           couponId: '',
           createTime: '',
-          memberUsername: '',
+          username: '',
           totalAmount: '',
           payAmount: '',
           freightAmount: '',
@@ -173,8 +173,7 @@
           receiverProvince: '',
           receiverCity: '',
           receiverRegion: '',
-          receiverDetailAddress: '',
-          note: '',
+          receiverAddress: '',
           confirmStatus: '',
           deleteStatus: '',
           useIntegration: '',
@@ -182,10 +181,11 @@
           deliveryTime: '',
           receiveTime: '',
           commentTime: '',
-          modifyTime: ''
+          modifyTime: '',
+          remark: ''
         },
         dataRule: {
-          memberId: [
+          userId: [
             { required: true, message: 'member_id不能为空', trigger: 'blur' }
           ],
           orderSn: [
@@ -195,9 +195,9 @@
             { required: true, message: '使用的优惠券不能为空', trigger: 'blur' }
           ],
           createTime: [
-            { required: true, message: 'create_time不能为空', trigger: 'blur' }
+            { required: true, message: '创建时间不能为空', trigger: 'blur' }
           ],
-          memberUsername: [
+          username: [
             { required: true, message: '用户名不能为空', trigger: 'blur' }
           ],
           totalAmount: [
@@ -278,11 +278,8 @@
           receiverRegion: [
             { required: true, message: '区不能为空', trigger: 'blur' }
           ],
-          receiverDetailAddress: [
+          receiverAddress: [
             { required: true, message: '详细地址不能为空', trigger: 'blur' }
-          ],
-          note: [
-            { required: true, message: '订单备注不能为空', trigger: 'blur' }
           ],
           confirmStatus: [
             { required: true, message: '确认收货状态[0->未确认；1->已确认]不能为空', trigger: 'blur' }
@@ -307,6 +304,9 @@
           ],
           modifyTime: [
             { required: true, message: '修改时间不能为空', trigger: 'blur' }
+          ],
+          remark: [
+            { required: true, message: '订单备注不能为空', trigger: 'blur' }
           ]
         }
       }
@@ -324,11 +324,11 @@
               params: this.$http.adornParams()
             }).then(({data}) => {
               if (data && data.code === 0) {
-                this.dataForm.memberId = data.order.memberId
+                this.dataForm.userId = data.order.userId
                 this.dataForm.orderSn = data.order.orderSn
                 this.dataForm.couponId = data.order.couponId
                 this.dataForm.createTime = data.order.createTime
-                this.dataForm.memberUsername = data.order.memberUsername
+                this.dataForm.username = data.order.username
                 this.dataForm.totalAmount = data.order.totalAmount
                 this.dataForm.payAmount = data.order.payAmount
                 this.dataForm.freightAmount = data.order.freightAmount
@@ -355,8 +355,7 @@
                 this.dataForm.receiverProvince = data.order.receiverProvince
                 this.dataForm.receiverCity = data.order.receiverCity
                 this.dataForm.receiverRegion = data.order.receiverRegion
-                this.dataForm.receiverDetailAddress = data.order.receiverDetailAddress
-                this.dataForm.note = data.order.note
+                this.dataForm.receiverAddress = data.order.receiverAddress
                 this.dataForm.confirmStatus = data.order.confirmStatus
                 this.dataForm.deleteStatus = data.order.deleteStatus
                 this.dataForm.useIntegration = data.order.useIntegration
@@ -365,6 +364,7 @@
                 this.dataForm.receiveTime = data.order.receiveTime
                 this.dataForm.commentTime = data.order.commentTime
                 this.dataForm.modifyTime = data.order.modifyTime
+                this.dataForm.remark = data.order.remark
               }
             })
           }
@@ -379,11 +379,11 @@
               method: 'post',
               data: this.$http.adornData({
                 'id': this.dataForm.id || undefined,
-                'memberId': this.dataForm.memberId,
+                'userId': this.dataForm.userId,
                 'orderSn': this.dataForm.orderSn,
                 'couponId': this.dataForm.couponId,
                 'createTime': this.dataForm.createTime,
-                'memberUsername': this.dataForm.memberUsername,
+                'username': this.dataForm.username,
                 'totalAmount': this.dataForm.totalAmount,
                 'payAmount': this.dataForm.payAmount,
                 'freightAmount': this.dataForm.freightAmount,
@@ -410,8 +410,7 @@
                 'receiverProvince': this.dataForm.receiverProvince,
                 'receiverCity': this.dataForm.receiverCity,
                 'receiverRegion': this.dataForm.receiverRegion,
-                'receiverDetailAddress': this.dataForm.receiverDetailAddress,
-                'note': this.dataForm.note,
+                'receiverAddress': this.dataForm.receiverAddress,
                 'confirmStatus': this.dataForm.confirmStatus,
                 'deleteStatus': this.dataForm.deleteStatus,
                 'useIntegration': this.dataForm.useIntegration,
@@ -419,7 +418,8 @@
                 'deliveryTime': this.dataForm.deliveryTime,
                 'receiveTime': this.dataForm.receiveTime,
                 'commentTime': this.dataForm.commentTime,
-                'modifyTime': this.dataForm.modifyTime
+                'modifyTime': this.dataForm.modifyTime,
+                'remark': this.dataForm.remark
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

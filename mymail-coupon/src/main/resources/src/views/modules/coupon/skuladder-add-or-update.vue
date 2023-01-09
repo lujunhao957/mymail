@@ -13,9 +13,6 @@
     <el-form-item label="打几折" prop="discount">
       <el-input v-model="dataForm.discount" placeholder="打几折"></el-input>
     </el-form-item>
-    <el-form-item label="折后价" prop="price">
-      <el-input v-model="dataForm.price" placeholder="折后价"></el-input>
-    </el-form-item>
     <el-form-item label="是否叠加其他优惠[0-不可叠加，1-可叠加]" prop="addOther">
       <el-input v-model="dataForm.addOther" placeholder="是否叠加其他优惠[0-不可叠加，1-可叠加]"></el-input>
     </el-form-item>
@@ -37,7 +34,6 @@
           skuId: '',
           fullCount: '',
           discount: '',
-          price: '',
           addOther: ''
         },
         dataRule: {
@@ -49,9 +45,6 @@
           ],
           discount: [
             { required: true, message: '打几折不能为空', trigger: 'blur' }
-          ],
-          price: [
-            { required: true, message: '折后价不能为空', trigger: 'blur' }
           ],
           addOther: [
             { required: true, message: '是否叠加其他优惠[0-不可叠加，1-可叠加]不能为空', trigger: 'blur' }
@@ -75,7 +68,6 @@
                 this.dataForm.skuId = data.skuLadder.skuId
                 this.dataForm.fullCount = data.skuLadder.fullCount
                 this.dataForm.discount = data.skuLadder.discount
-                this.dataForm.price = data.skuLadder.price
                 this.dataForm.addOther = data.skuLadder.addOther
               }
             })
@@ -94,7 +86,6 @@
                 'skuId': this.dataForm.skuId,
                 'fullCount': this.dataForm.fullCount,
                 'discount': this.dataForm.discount,
-                'price': this.dataForm.price,
                 'addOther': this.dataForm.addOther
               })
             }).then(({data}) => {

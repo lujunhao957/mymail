@@ -23,7 +23,7 @@
         width="50">
       </el-table-column>
       <el-table-column
-        prop="catId"
+        prop="id"
         header-align="center"
         align="center"
         label="分类id">
@@ -35,19 +35,13 @@
         label="分类名称">
       </el-table-column>
       <el-table-column
-        prop="parentCid"
+        prop="parentId"
         header-align="center"
         align="center"
         label="父分类id">
       </el-table-column>
       <el-table-column
-        prop="catLevel"
-        header-align="center"
-        align="center"
-        label="层级">
-      </el-table-column>
-      <el-table-column
-        prop="showStatus"
+        prop="status"
         header-align="center"
         align="center"
         label="是否显示[0-不显示，1显示]">
@@ -65,16 +59,10 @@
         label="图标地址">
       </el-table-column>
       <el-table-column
-        prop="productUnit"
+        prop="unit"
         header-align="center"
         align="center"
         label="计量单位">
-      </el-table-column>
-      <el-table-column
-        prop="productCount"
-        header-align="center"
-        align="center"
-        label="商品数量">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -83,8 +71,8 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.catId)">修改</el-button>
-          <el-button type="text" size="small" @click="deleteHandle(scope.row.catId)">删除</el-button>
+          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
+          <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -173,7 +161,7 @@
       // 删除
       deleteHandle (id) {
         var ids = id ? [id] : this.dataListSelections.map(item => {
-          return item.catId
+          return item.id
         })
         this.$confirm(`确定对[id=${ids.join(',')}]进行[${id ? '删除' : '批量删除'}]操作?`, '提示', {
           confirmButtonText: '确定',

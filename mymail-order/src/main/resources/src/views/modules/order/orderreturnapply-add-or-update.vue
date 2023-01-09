@@ -82,8 +82,8 @@
     <el-form-item label="收货电话" prop="receivePhone">
       <el-input v-model="dataForm.receivePhone" placeholder="收货电话"></el-input>
     </el-form-item>
-    <el-form-item label="公司收货地址" prop="companyAddress">
-      <el-input v-model="dataForm.companyAddress" placeholder="公司收货地址"></el-input>
+    <el-form-item label="公司收货地址" prop="receiveAddress">
+      <el-input v-model="dataForm.receiveAddress" placeholder="公司收货地址"></el-input>
     </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -126,7 +126,7 @@
           receiveTime: '',
           receiveNote: '',
           receivePhone: '',
-          companyAddress: ''
+          receiveAddress: ''
         },
         dataRule: {
           orderId: [
@@ -207,7 +207,7 @@
           receivePhone: [
             { required: true, message: '收货电话不能为空', trigger: 'blur' }
           ],
-          companyAddress: [
+          receiveAddress: [
             { required: true, message: '公司收货地址不能为空', trigger: 'blur' }
           ]
         }
@@ -252,7 +252,7 @@
                 this.dataForm.receiveTime = data.orderReturnApply.receiveTime
                 this.dataForm.receiveNote = data.orderReturnApply.receiveNote
                 this.dataForm.receivePhone = data.orderReturnApply.receivePhone
-                this.dataForm.companyAddress = data.orderReturnApply.companyAddress
+                this.dataForm.receiveAddress = data.orderReturnApply.receiveAddress
               }
             })
           }
@@ -293,7 +293,7 @@
                 'receiveTime': this.dataForm.receiveTime,
                 'receiveNote': this.dataForm.receiveNote,
                 'receivePhone': this.dataForm.receivePhone,
-                'companyAddress': this.dataForm.companyAddress
+                'receiveAddress': this.dataForm.receiveAddress
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

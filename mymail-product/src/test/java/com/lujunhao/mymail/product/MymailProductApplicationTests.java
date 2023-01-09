@@ -13,11 +13,7 @@ class MymailProductApplicationTests {
     BrandService brandService;
     @Test
     void contextLoads() {
-        BrandEntity brandEntity=new BrandEntity();
-        brandEntity.setName("华为");
-        brandEntity.setDescript("heise");
-        brandService.save(brandEntity);
-        System.out.println("保存成功");
+
     }
 
 }

@@ -29,7 +29,7 @@
         label="id">
       </el-table-column>
       <el-table-column
-        prop="memberId"
+        prop="userId"
         header-align="center"
         align="center"
         label="member_id">
@@ -50,10 +50,10 @@
         prop="createTime"
         header-align="center"
         align="center"
-        label="create_time">
+        label="创建时间">
       </el-table-column>
       <el-table-column
-        prop="memberUsername"
+        prop="username"
         header-align="center"
         align="center"
         label="用户名">
@@ -215,16 +215,10 @@
         label="区">
       </el-table-column>
       <el-table-column
-        prop="receiverDetailAddress"
+        prop="receiverAddress"
         header-align="center"
         align="center"
         label="详细地址">
-      </el-table-column>
-      <el-table-column
-        prop="note"
-        header-align="center"
-        align="center"
-        label="订单备注">
       </el-table-column>
       <el-table-column
         prop="confirmStatus"
@@ -273,6 +267,12 @@
         header-align="center"
         align="center"
         label="修改时间">
+      </el-table-column>
+      <el-table-column
+        prop="remark"
+        header-align="center"
+        align="center"
+        label="订单备注">
       </el-table-column>
       <el-table-column
         fixed="right"

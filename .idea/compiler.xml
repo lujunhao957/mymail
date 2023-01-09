@@ -16,12 +16,14 @@
         <module name="renren-fast" />
         <module name="mymail-product" />
         <module name="renren-generator" />
+        <module name="mymail-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
       <module name="mymail" target="1.5" />
       <module name="mymail-commom" target="1.8" />
       <module name="mymail-coupon" target="1.8" />
+      <module name="mymail-gateway" target="1.8" />
       <module name="mymail-member" target="1.8" />
       <module name="mymail-order" target="1.8" />
       <module name="mymail-product" target="1.8" />
@@ -33,6 +35,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="mymail-coupon" options="-parameters" />
+      <module name="mymail-gateway" options="-parameters" />
       <module name="mymail-member" options="-parameters" />
       <module name="mymail-order" options="-parameters" />
       <module name="mymail-product" options="-parameters" />

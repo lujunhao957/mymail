@@ -35,19 +35,19 @@
         label="sku_id">
       </el-table-column>
       <el-table-column
-        prop="imgUrl"
+        prop="url"
         header-align="center"
         align="center"
         label="图片地址">
       </el-table-column>
       <el-table-column
-        prop="imgSort"
+        prop="sort"
         header-align="center"
         align="center"
         label="排序">
       </el-table-column>
       <el-table-column
-        prop="defaultImg"
+        prop="defaultStatus"
         header-align="center"
         align="center"
         label="默认图[0 - 不是默认图，1 - 是默认图]">

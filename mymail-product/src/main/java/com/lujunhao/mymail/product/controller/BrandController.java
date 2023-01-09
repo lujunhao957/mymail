@@ -23,7 +23,7 @@ import com.lujunhao.common.utils.R;
  *
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 12:18:51
+ * @date 2023-01-07 22:22:53
  */
 @RestController
 @RequestMapping("product/brand")
@@ -46,10 +46,10 @@ public class BrandController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{brandId}")
+    @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:brand:info")
-    public R info(@PathVariable("brandId") Long brandId){
-		BrandEntity brand = brandService.getById(brandId);
+    public R info(@PathVariable("id") Long id){
+		BrandEntity brand = brandService.getById(id);
 
         return R.ok().put("brand", brand);
     }
@@ -81,8 +81,8 @@ public class BrandController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:brand:delete")
-    public R delete(@RequestBody Long[] brandIds){
-		brandService.removeByIds(Arrays.asList(brandIds));
+    public R delete(@RequestBody Long[] ids){
+		brandService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

@@ -23,7 +23,7 @@ import com.lujunhao.common.utils.R;
  *
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 12:18:51
+ * @date 2023-01-07 22:22:53
  */
 @RestController
 @RequestMapping("product/attrgroup")
@@ -46,10 +46,10 @@ public class AttrGroupController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{attrGroupId}")
+    @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:attrgroup:info")
-    public R info(@PathVariable("attrGroupId") Long attrGroupId){
-		AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
+    public R info(@PathVariable("id") Long id){
+		AttrGroupEntity attrGroup = attrGroupService.getById(id);
 
         return R.ok().put("attrGroup", attrGroup);
     }
@@ -81,8 +81,8 @@ public class AttrGroupController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:attrgroup:delete")
-    public R delete(@RequestBody Long[] attrGroupIds){
-		attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
+    public R delete(@RequestBody Long[] ids){
+		attrGroupService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

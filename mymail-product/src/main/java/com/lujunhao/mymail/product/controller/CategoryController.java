@@ -1,6 +1,7 @@
 package com.lujunhao.mymail.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,7 +24,7 @@ import com.lujunhao.common.utils.R;
  *
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 12:18:51
+ * @date 2023-01-07 22:22:52
  */
 @RestController
 @RequestMapping("product/category")
@@ -34,22 +35,22 @@ public class CategoryController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/tree")
     //@RequiresPermissions("product:category:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
+        List<CategoryEntity> categoryEntities=categoryService.listWithTree();
 
-        return R.ok().put("page", page);
+        return R.ok().put("data", categoryEntities);
     }
 
 
     /**
      * 信息
      */
-    @RequestMapping("/info/{catId}")
+    @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:category:info")
-    public R info(@PathVariable("catId") Long catId){
-		CategoryEntity category = categoryService.getById(catId);
+    public R info(@PathVariable("id") Long id){
+		CategoryEntity category = categoryService.getById(id);
 
         return R.ok().put("category", category);
     }
@@ -81,8 +82,8 @@ public class CategoryController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:category:delete")
-    public R delete(@RequestBody Long[] catIds){
-		categoryService.removeByIds(Arrays.asList(catIds));
+    public R delete(@RequestBody Long[] ids){
+		categoryService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

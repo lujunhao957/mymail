@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
-import com.lujunhao.mymail.member.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,26 +23,13 @@ import com.lujunhao.common.utils.R;
  *
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 15:46:23
+ * @date 2023-01-07 22:39:03
  */
 @RestController
 @RequestMapping("member/member")
 public class MemberController {
     @Autowired
     private MemberService memberService;
-
-    @Autowired
-    CouponFeignService couponFeignService;
-
-    @RequestMapping("/coupons")
-    public R test(){
-        MemberEntity memberEntity=new MemberEntity();
-        memberEntity.setNickname("zhangsan");
-
-        R membercoupons=couponFeignService.memberCoupons();
-
-        return R.ok().put("member",memberEntity).put("coupons",membercoupons.get("coupons"));
-    }
 
     /**
      * 列表

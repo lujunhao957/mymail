@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/mymail-ware/pom.xml" />
         <option value="$PROJECT_DIR$/mymail-member/pom.xml" />
         <option value="$PROJECT_DIR$/mymail-coupon/pom.xml" />
+        <option value="$PROJECT_DIR$/mymail-gateway/pom.xml" />
       </list>
     </option>
   </component>

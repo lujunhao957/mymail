@@ -13,7 +13,7 @@ import lombok.Data;
  * 
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 15:54:06
+ * @date 2023-01-07 22:37:06
  */
 @Data
 @TableName("oms_order_return_apply")
@@ -132,6 +132,6 @@ public class OrderReturnApplyEntity implements Serializable {
 	/**
 	 * 公司收货地址
 	 */
-	private String companyAddress;
+	private String receiveAddress;
 
 }

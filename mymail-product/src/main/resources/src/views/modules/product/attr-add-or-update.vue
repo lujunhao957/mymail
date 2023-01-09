@@ -1,11 +1,11 @@
 <template>
   <el-dialog
-    :title="!dataForm.attrId ? '新增' : '修改'"
+    :title="!dataForm.id ? '新增' : '修改'"
     :close-on-click-modal="false"
     :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
-    <el-form-item label="属性名" prop="attrName">
-      <el-input v-model="dataForm.attrName" placeholder="属性名"></el-input>
+    <el-form-item label="属性名" prop="name">
+      <el-input v-model="dataForm.name" placeholder="属性名"></el-input>
     </el-form-item>
     <el-form-item label="是否需要检索[0-不需要，1-需要]" prop="searchType">
       <el-input v-model="dataForm.searchType" placeholder="是否需要检索[0-不需要，1-需要]"></el-input>
@@ -16,17 +16,20 @@
     <el-form-item label="可选值列表[用逗号分隔]" prop="valueSelect">
       <el-input v-model="dataForm.valueSelect" placeholder="可选值列表[用逗号分隔]"></el-input>
     </el-form-item>
-    <el-form-item label="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]" prop="attrType">
-      <el-input v-model="dataForm.attrType" placeholder="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]"></el-input>
+    <el-form-item label="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]" prop="type">
+      <el-input v-model="dataForm.type" placeholder="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]"></el-input>
     </el-form-item>
     <el-form-item label="启用状态[0 - 禁用，1 - 启用]" prop="enable">
       <el-input v-model="dataForm.enable" placeholder="启用状态[0 - 禁用，1 - 启用]"></el-input>
     </el-form-item>
-    <el-form-item label="所属分类" prop="catelogId">
-      <el-input v-model="dataForm.catelogId" placeholder="所属分类"></el-input>
-    </el-form-item>
     <el-form-item label="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整" prop="showDesc">
       <el-input v-model="dataForm.showDesc" placeholder="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整"></el-input>
+    </el-form-item>
+    <el-form-item label="所属分类" prop="categoryId">
+      <el-input v-model="dataForm.categoryId" placeholder="所属分类"></el-input>
+    </el-form-item>
+    <el-form-item label="规格分组id" prop="groupId">
+      <el-input v-model="dataForm.groupId" placeholder="规格分组id"></el-input>
     </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -42,18 +45,19 @@
       return {
         visible: false,
         dataForm: {
-          attrId: 0,
-          attrName: '',
+          id: 0,
+          name: '',
           searchType: '',
           icon: '',
           valueSelect: '',
-          attrType: '',
+          type: '',
           enable: '',
-          catelogId: '',
-          showDesc: ''
+          showDesc: '',
+          categoryId: '',
+          groupId: ''
         },
         dataRule: {
-          attrName: [
+          name: [
             { required: true, message: '属性名不能为空', trigger: 'blur' }
           ],
           searchType: [
@@ -65,42 +69,46 @@
           valueSelect: [
             { required: true, message: '可选值列表[用逗号分隔]不能为空', trigger: 'blur' }
           ],
-          attrType: [
+          type: [
             { required: true, message: '属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]不能为空', trigger: 'blur' }
           ],
           enable: [
             { required: true, message: '启用状态[0 - 禁用，1 - 启用]不能为空', trigger: 'blur' }
           ],
-          catelogId: [
-            { required: true, message: '所属分类不能为空', trigger: 'blur' }
-          ],
           showDesc: [
             { required: true, message: '快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整不能为空', trigger: 'blur' }
+          ],
+          categoryId: [
+            { required: true, message: '所属分类不能为空', trigger: 'blur' }
+          ],
+          groupId: [
+            { required: true, message: '规格分组id不能为空', trigger: 'blur' }
           ]
         }
       }
     },
     methods: {
       init (id) {
-        this.dataForm.attrId = id || 0
+        this.dataForm.id = id || 0
         this.visible = true
         this.$nextTick(() => {
           this.$refs['dataForm'].resetFields()
-          if (this.dataForm.attrId) {
+          if (this.dataForm.id) {
             this.$http({
-              url: this.$http.adornUrl(`/product/attr/info/${this.dataForm.attrId}`),
+              url: this.$http.adornUrl(`/product/attr/info/${this.dataForm.id}`),
               method: 'get',
               params: this.$http.adornParams()
             }).then(({data}) => {
               if (data && data.code === 0) {
-                this.dataForm.attrName = data.attr.attrName
+                this.dataForm.name = data.attr.name
                 this.dataForm.searchType = data.attr.searchType
                 this.dataForm.icon = data.attr.icon
                 this.dataForm.valueSelect = data.attr.valueSelect
-                this.dataForm.attrType = data.attr.attrType
+                this.dataForm.type = data.attr.type
                 this.dataForm.enable = data.attr.enable
-                this.dataForm.catelogId = data.attr.catelogId
                 this.dataForm.showDesc = data.attr.showDesc
+                this.dataForm.categoryId = data.attr.categoryId
+                this.dataForm.groupId = data.attr.groupId
               }
             })
           }
@@ -111,18 +119,19 @@
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
-              url: this.$http.adornUrl(`/product/attr/${!this.dataForm.attrId ? 'save' : 'update'}`),
+              url: this.$http.adornUrl(`/product/attr/${!this.dataForm.id ? 'save' : 'update'}`),
               method: 'post',
               data: this.$http.adornData({
-                'attrId': this.dataForm.attrId || undefined,
-                'attrName': this.dataForm.attrName,
+                'id': this.dataForm.id || undefined,
+                'name': this.dataForm.name,
                 'searchType': this.dataForm.searchType,
                 'icon': this.dataForm.icon,
                 'valueSelect': this.dataForm.valueSelect,
-                'attrType': this.dataForm.attrType,
+                'type': this.dataForm.type,
                 'enable': this.dataForm.enable,
-                'catelogId': this.dataForm.catelogId,
-                'showDesc': this.dataForm.showDesc
+                'showDesc': this.dataForm.showDesc,
+                'categoryId': this.dataForm.categoryId,
+                'groupId': this.dataForm.groupId
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

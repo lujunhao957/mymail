@@ -23,7 +23,7 @@ import com.lujunhao.common.utils.R;
  *
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 12:18:51
+ * @date 2023-01-07 22:22:53
  */
 @RestController
 @RequestMapping("product/attr")
@@ -46,10 +46,10 @@ public class AttrController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{attrId}")
+    @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:attr:info")
-    public R info(@PathVariable("attrId") Long attrId){
-		AttrEntity attr = attrService.getById(attrId);
+    public R info(@PathVariable("id") Long id){
+		AttrEntity attr = attrService.getById(id);
 
         return R.ok().put("attr", attr);
     }
@@ -81,8 +81,8 @@ public class AttrController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:attr:delete")
-    public R delete(@RequestBody Long[] attrIds){
-		attrService.removeByIds(Arrays.asList(attrIds));
+    public R delete(@RequestBody Long[] ids){
+		attrService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

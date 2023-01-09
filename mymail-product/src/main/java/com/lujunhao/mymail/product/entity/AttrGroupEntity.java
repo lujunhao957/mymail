@@ -12,7 +12,7 @@ import lombok.Data;
  * 
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 12:18:51
+ * @date 2023-01-07 22:22:53
  */
 @Data
 @TableName("pms_attr_group")
@@ -23,19 +23,15 @@ public class AttrGroupEntity implements Serializable {
 	 * 分组id
 	 */
 	@TableId
-	private Long attrGroupId;
+	private Long id;
 	/**
 	 * 组名
 	 */
-	private String attrGroupName;
+	private String name;
 	/**
 	 * 排序
 	 */
 	private Integer sort;
-	/**
-	 * 描述
-	 */
-	private String descript;
 	/**
 	 * 组图标
 	 */
@@ -43,6 +39,10 @@ public class AttrGroupEntity implements Serializable {
 	/**
 	 * 所属分类id
 	 */
-	private Long catelogId;
+	private Long categoryId;
+	/**
+	 * 备注
+	 */
+	private String remark;
 
 }

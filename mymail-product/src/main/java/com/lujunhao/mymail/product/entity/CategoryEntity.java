@@ -1,10 +1,13 @@
 package com.lujunhao.mymail.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -12,7 +15,7 @@ import lombok.Data;
  * 
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 12:18:51
+ * @date 2023-01-07 22:22:52
  */
 @Data
 @TableName("pms_category")
@@ -23,7 +26,7 @@ public class CategoryEntity implements Serializable {
 	 * 分类id
 	 */
 	@TableId
-	private Long catId;
+	private Long id;
 	/**
 	 * 分类名称
 	 */
@@ -31,15 +34,11 @@ public class CategoryEntity implements Serializable {
 	/**
 	 * 父分类id
 	 */
-	private Long parentCid;
-	/**
-	 * 层级
-	 */
-	private Integer catLevel;
+	private Long parentId;
 	/**
 	 * 是否显示[0-不显示，1显示]
 	 */
-	private Integer showStatus;
+	private Integer status;
 	/**
 	 * 排序
 	 */
@@ -51,10 +50,12 @@ public class CategoryEntity implements Serializable {
 	/**
 	 * 计量单位
 	 */
-	private String productUnit;
+	private String unit;
+
 	/**
-	 * 商品数量
+	 * 子分类
 	 */
-	private Integer productCount;
+	@TableField(exist = false)
+	private List<CategoryEntity> children;
 
 }

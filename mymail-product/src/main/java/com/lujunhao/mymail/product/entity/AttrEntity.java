@@ -12,7 +12,7 @@ import lombok.Data;
  * 
  * @author lujunhao
  * @email 2580101005@qq.com
- * @date 2023-01-05 12:18:51
+ * @date 2023-01-07 22:22:53
  */
 @Data
 @TableName("pms_attr")
@@ -23,11 +23,11 @@ public class AttrEntity implements Serializable {
 	 * 属性id
 	 */
 	@TableId
-	private Long attrId;
+	private Long id;
 	/**
 	 * 属性名
 	 */
-	private String attrName;
+	private String name;
 	/**
 	 * 是否需要检索[0-不需要，1-需要]
 	 */
@@ -43,18 +43,22 @@ public class AttrEntity implements Serializable {
 	/**
 	 * 属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]
 	 */
-	private Integer attrType;
+	private Integer type;
 	/**
 	 * 启用状态[0 - 禁用，1 - 启用]
 	 */
 	private Long enable;
 	/**
-	 * 所属分类
-	 */
-	private Long catelogId;
-	/**
 	 * 快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整
 	 */
 	private Integer showDesc;
+	/**
+	 * 所属分类
+	 */
+	private Long categoryId;
+	/**
+	 * 规格分组id
+	 */
+	private Long groupId;
 
 }

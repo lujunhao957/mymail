@@ -16,8 +16,8 @@
     <el-form-item label="订单状态【0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单】" prop="orderStatus">
       <el-input v-model="dataForm.orderStatus" placeholder="订单状态【0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单】"></el-input>
     </el-form-item>
-    <el-form-item label="备注" prop="note">
-      <el-input v-model="dataForm.note" placeholder="备注"></el-input>
+    <el-form-item label="备注" prop="remark">
+      <el-input v-model="dataForm.remark" placeholder="备注"></el-input>
     </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -38,7 +38,7 @@
           operateMan: '',
           createTime: '',
           orderStatus: '',
-          note: ''
+          remark: ''
         },
         dataRule: {
           orderId: [
@@ -53,7 +53,7 @@
           orderStatus: [
             { required: true, message: '订单状态【0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单】不能为空', trigger: 'blur' }
           ],
-          note: [
+          remark: [
             { required: true, message: '备注不能为空', trigger: 'blur' }
           ]
         }
@@ -76,7 +76,7 @@
                 this.dataForm.operateMan = data.orderOperateHistory.operateMan
                 this.dataForm.createTime = data.orderOperateHistory.createTime
                 this.dataForm.orderStatus = data.orderOperateHistory.orderStatus
-                this.dataForm.note = data.orderOperateHistory.note
+                this.dataForm.remark = data.orderOperateHistory.remark
               }
             })
           }
@@ -95,7 +95,7 @@
                 'operateMan': this.dataForm.operateMan,
                 'createTime': this.dataForm.createTime,
                 'orderStatus': this.dataForm.orderStatus,
-                'note': this.dataForm.note
+                'remark': this.dataForm.remark
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

@@ -47,12 +47,6 @@
         label="打几折">
       </el-table-column>
       <el-table-column
-        prop="price"
-        header-align="center"
-        align="center"
-        label="折后价">
-      </el-table-column>
-      <el-table-column
         prop="addOther"
         header-align="center"
         align="center"
